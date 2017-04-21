@@ -14,9 +14,9 @@ Given a vector of parameters $$ \vec{\theta}$$ on policy, you have a policy $$\p
 
 ### Parameterize the Probability of Actions under Given states
 
-Obviously, the input to the policy $\pi(a|s,\vec{\theta})$ is the state we are currently in. Instead of using a policy that gives us a deterministic action, here we make the policy output a distribution on action. The reason is that by making the policy random we are actually exploring the world. Just like in Q-learning we use epsilon-greedy algorithm.
+Obviously, the input to the policy $$ \pi(a|s,\vec{\theta}) $$ is the state we are currently in. Instead of using a policy that gives us a deterministic action, here we make the policy output a distribution on action. The reason is that by making the policy random we are actually exploring the world. Just like in Q-learning we use epsilon-greedy algorithm.
 
-If the action space is discrete, where you have a fixed number of actions, the output of the $\pi(a|s,\vec{\theta})$ can be log probability of different action, like the output of neural network in classification problem. If the action space is continuous space, one way is to assume you action follows the normal distribution, where the mean of the normal distribution is calculted by your function. The variance of the normal distribution can be fixed or parameterized, too.
+If the action space is discrete, where you have a fixed number of actions, the output of the $$ \pi(a|s,\vec{\theta}) $$ can be log probability of different action, like the output of neural network in classification problem. If the action space is continuous space, one way is to assume you action follows the normal distribution, where the mean of the normal distribution is calculted by your function. The variance of the normal distribution can be fixed or parameterized, too.
 
 So, if you use a linear function to parameterize the policy, your code looks like this,
 ```python
@@ -123,7 +123,7 @@ else:
 
 ### Derivation of Loss 
 
-Suppose you have a path $\tau$, the probability of which occurs under a certain policy is $\pi({\tau|\theta})$, the discounted return for this path is $R(\tau)$. The expected return of this policy is $E_{\tau \sim \pi(\theta)}[R(\tau)])$. Now, we want to improve this policy, e.g. improve the expectation. Let take the gradient of the expectation, respect to $\theta$, 
+Suppose you have a path $\tau$, the probability of which occurs under a certain policy is $$ \pi({\tau|\theta}) $$, the discounted return for this path is $$ R(\tau) $$. The expected return of this policy is $$ E_{\tau \sim \pi(\theta)}[R(\tau)]) $$. Now, we want to improve this policy, e.g. improve the expectation. Let take the gradient of the expectation, respect to $$ \theta $$, 
 
 $$
 \begin{aligned}
