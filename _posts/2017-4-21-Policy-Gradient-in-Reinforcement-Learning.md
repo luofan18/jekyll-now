@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Policy Gradient in Reinforcement Learning
+published: true
 ---
 
 This article is a simple introduction for coding policy gradient algorithm and assumes you already have some knowledge about reinforcement learning and machine learning.
@@ -122,7 +123,8 @@ else:
 
 ### Derivation of Loss 
 
-Suppose you have a path $\tau$, the probability of which occurs under a certain policy is $\pi({\tau|\theta})$, the discounted return for this path is $R(\tau)$. The expected return of this policy is $E_{\tau \sim \pi(\theta)}[R(\tau)])$. Now, we want to improve this policy, e.g. improve the expectation. Let take the gradient of the expectation, respect to $\theta$, 
+Suppose you have a path $\tau$, the probability of which occurs under a certain policy is $\pi({\tau|\theta})$, the discounted return for this path is $R(\tau)$. The expected return of this policy is $E_{\tau \sim \pi(\theta)}[R(\tau)])$. Now, we want to improve this policy, e.g. improve the expectation. Let take the gradient of the expectation, respect to $\theta$,
+
 $$
 \begin{aligned}
 \bigtriangledown _\theta{E_{\tau \sim \pi(\theta)}[R(\tau)]} & = \bigtriangledown _\theta \int{\pi(\tau, \theta)R(\tau)d\tau}  \\
@@ -132,15 +134,20 @@ $$
 & = E_{\tau \sim \pi (\theta)}[\bigtriangledown \log( \pi (\tau, \theta))R( \tau)]
 \end{aligned}
 $$
+
 The first and last step is exacly the definition of epectation. We do the 4th step because 
+
 $$
 \bigtriangledown _\theta \log (\pi (\tau, \theta)) = \frac {1}{\pi (\tau, \theta)} \bigtriangledown _\theta \pi (\tau, \theta)
 $$
+
 This fomula tell us that to adjust our policy, we can adjust the log-probability of the path times something. Subtract it with our baseline function $B( \tau) $, we have
+
 $$
 \begin{aligned}
 \bigtriangledown _\theta E [R(\tau) - B(\tau)] & = E [ \bigtriangledown _\theta \log ( \pi ( \tau, \theta)) (R(\tau) - B(\tau))] \\
 & = E [ \bigtriangledown _\theta \log( \pi( \tau, \theta))A(\tau)]  
 \end{aligned}
 $$
+
 This is the loss we are actually using.
