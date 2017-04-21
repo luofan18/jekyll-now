@@ -123,7 +123,7 @@ else:
 
 ### Derivation of Loss 
 
-Suppose you have a path $\tau$, the probability of which occurs under a certain policy is $\pi({\tau|\theta})$, the discounted return for this path is $R(\tau)$. The expected return of this policy is $E_{\tau \sim \pi(\theta)}[R(\tau)])$. Now, we want to improve this policy, e.g. improve the expectation. Let take the gradient of the expectation, respect to $\theta$,
+Suppose you have a path $\tau$, the probability of which occurs under a certain policy is $\pi({\tau|\theta})$, the discounted return for this path is $R(\tau)$. The expected return of this policy is $E_{\tau \sim \pi(\theta)}[R(\tau)])$. Now, we want to improve this policy, e.g. improve the expectation. Let take the gradient of the expectation, respect to $\theta$, 
 
 $$
 \begin{aligned}
