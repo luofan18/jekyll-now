@@ -5,13 +5,13 @@ title: Policy Gradient in Reinforcement Learning
 
 This article is a simple introduction for coding policy gradient algorithm and assumes you already have some knowledge about reinforcement learning and machine learning.
 
-###Direct Parameterize Policy
+### Direct Parameterize Policy
 
 There are several branches of methods in reinforcement learning. Apart from Q-learning, where you approximate the Q-function of the state and action, you can direct parameterize the policy. 
 
 Given a vector of parameters $\vec{\theta}$ on policy, you have a policy $\pi(a |s,\vec{\theta}) $ which give you the probability of certain action $a$ under state $s$. Then you sample an action from that distribution, take this action, observe the next state and reward. After you run the same policy for a period, you evaluate your current policy with data collected and figure out which actions are responsible for better reward. Then you increase the probability of 'good' policy and decrease the 'bad' policy.
 
-###Parameterize the Probability of Actions under Given states
+### Parameterize the Probability of Actions under Given states
 
 Obviously, the input to the policy $\pi(a|s,\vec{\theta})$ is the state we are currently in. Instead of using a policy that gives us a deterministic action, here we make the policy output a distribution on action. The reason is that by making the policy random we are actually exploring the world. Just like in Q-learning we use epsilon-greedy algorithm.
 
