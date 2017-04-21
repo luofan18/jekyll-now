@@ -141,7 +141,7 @@ $$
 \bigtriangledown _\theta \log (\pi (\tau, \theta)) = \frac {1}{\pi (\tau, \theta)} \bigtriangledown _\theta \pi (\tau, \theta)
 $$
 
-This fomula tell us that to adjust our policy, we can adjust the log-probability of the path times something. Subtract it with our baseline function $B( \tau) $, we have
+This fomula tell us that to adjust our policy, we can adjust the log-probability of the path times something. Subtract it with our baseline function $$B( \tau) $$, we have
 
 $$
 \begin{aligned}
