@@ -10,7 +10,7 @@ This article is a simple introduction for coding policy gradient algorithm and a
 
 There are several branches of methods in reinforcement learning. Apart from Q-learning, where you approximate the Q-function of the state and action, you can direct parameterize the policy. 
 
-Given a vector of parameters \\( \vec{\theta} \\) on policy, you have a policy \\( \pi(a \vert s,\vec{\theta}) \\) which give you the probability of certain action \\( a \\) under state \\( s \\). Then you sample an action from that distribution, take this action, observe the next state and reward. After you run the same policy for a period, you evaluate your current policy with data collected and figure out which actions are responsible for better reward. Then you increase the probability of 'good' policy and decrease the 'bad' policy.
+Given a vector of parameters $$ \vec{\theta} $$ on policy, you have a policy $$ \pi(a \vert s,\vec{\theta}) $$ which give you the probability of certain action $$ a $$ under state $$ s $$. Then you sample an action from that distribution, take this action, observe the next state and reward. After you run the same policy for a period, you evaluate your current policy with data collected and figure out which actions are responsible for better reward. Then you increase the probability of 'good' policy and decrease the 'bad' policy.
 
 ### Parameterize the Probability of Actions under Given states
 
@@ -123,7 +123,7 @@ else:
 
 ### Derivation of Loss 
 
-Suppose you have a path $\tau$, the probability of which occurs under a certain policy is $$ \pi({\tau \vert \theta}) $$, the discounted return for this path is $$ R(\tau) $$. The expected return of this policy is $$ E_{\tau \sim \pi(\theta)}[R(\tau)]) $$. Now, we want to improve this policy, e.g. improve the expectation. Let take the gradient of the expectation, respect to $$ \theta $$, 
+Suppose you have a path $$\tau$$, the probability of which occurs under a certain policy is $$ \pi({\tau \vert \theta}) $$, the discounted return for this path is $$ R(\tau) $$. The expected return of this policy is $$ E_{\tau \sim \pi(\theta)}[R(\tau)]) $$. Now, we want to improve this policy, e.g. improve the expectation. Let take the gradient of the expectation, respect to $$ \theta $$, 
 
 $$
 \begin{aligned}
