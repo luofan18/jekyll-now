@@ -106,6 +106,7 @@ Kl = kl.mean()
 For action sampled from the normal distribution, the solution is a little bit complicated. After some derivation, we code like this
 ```python
 kl = np.log(a_std / a_std_old) + (a_std_old ** 2 + (a_mean_old - a_mean) ** 2) / (2 * a_std) - 0.5
+kl = kl.mean()
 ``` 
 
 Now, we can adaptively change the step size to update our policy. 
