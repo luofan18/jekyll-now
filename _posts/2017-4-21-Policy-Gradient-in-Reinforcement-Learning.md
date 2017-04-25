@@ -132,7 +132,7 @@ $$
 & = \int{\bigtriangledown _\theta \pi(\tau, \theta)R(\tau)} d\tau \\
 & = \int{\pi(\tau, \theta) \frac{\bigtriangledown _\theta \pi (\tau, \theta)}{\pi (\tau, \theta)}R(\tau)} d\tau\\
 & = \int{\pi (\tau, \theta) [\bigtriangledown _\theta \log( \pi( \tau, \theta)) R(\tau)}] d\tau \\
-& = E_{\tau \sim \pi (\theta)}[\bigtriangledown \log( \pi (\tau, \theta))R( \tau)]
+& = E_{\tau \sim \pi (\theta)}[\bigtriangledown _\theta \log( \pi (\tau, \theta))R( \tau)]
 \end{aligned}
 $$
 
@@ -145,7 +145,7 @@ $$
 The final formula is
 
 $$
-\bigtriangledown _\theta{E_{\tau \sim \pi(\theta)}[R(\tau)]} = E_{\tau \sim \pi (\theta)}[\bigtriangledown \log( \pi (\tau, \theta))R( \tau)]
+\bigtriangledown _\theta{E_{\tau \sim \pi(\theta)}[R(\tau)]} = E_{\tau \sim \pi (\theta)}[\bigtriangledown _\theta \log( \pi (\tau, \theta))R( \tau)]
 $$
 
 This formula tells us that to adjust our policy, we only need to know the product of the log-probability of the path and the respect return. Subtract it with our baseline function $$B( \tau) $$, we have
