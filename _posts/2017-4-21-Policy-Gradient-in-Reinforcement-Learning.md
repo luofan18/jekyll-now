@@ -1,3 +1,8 @@
+---
+layout: post
+title: Policy Gradient in Reinforcement Learning
+published: true
+---
 
 This article is a simple introduction for coding policy gradient algorithm and assumes you already have some knowledge about reinforcement learning and machine learning.
 
