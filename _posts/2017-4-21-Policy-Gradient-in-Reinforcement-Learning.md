@@ -29,7 +29,7 @@ Of course, neural networks are good choices to fit the policy, too.
 
 ### Measure 'Goodness' of Policy
 
-Since we hope that the 'good' actions happen more likely and 'bad' actions happen less likely we need to define a baseline for whether the action is good or not. A near optimal baseline is the expectation of discounted return we get just now using previous policy. This is exactly the value of the policy which we used to collect the data. Below is a simple implementation to calculate the discounted return along a path,
+Since we hope that the 'good' actions happen more likely and 'bad' actions happen less likely we need to define a baseline to indicate whether the action is good or not. A near optimal baseline is the expectation of discounted return we get just now using previous policy. This is exactly the value of the policy which we used to collect the data. Below is a simple implementation to calculate the discounted return along a path,
 ```python
 # discount factor
 gamma = 0.99
