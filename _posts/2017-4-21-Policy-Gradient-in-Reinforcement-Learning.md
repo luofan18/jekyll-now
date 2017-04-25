@@ -1,22 +1,17 @@
----
-layout: post
-title: Policy Gradient in Reinforcement Learning
-published: true
----
 
 This article is a simple introduction for coding policy gradient algorithm and assumes you already have some knowledge about reinforcement learning and machine learning.
 
-### Direct Parameterize Policy
+### Directly Parameterize Policy
 
-There are several branches of methods in reinforcement learning. Apart from Q-learning, where you approximate the Q-function of the state and action, you can direct parameterize the policy. 
+There are several branches of methods in reinforcement learning. Apart from Q-learning, where you approximate the Q-function of the state and action, you can directly parameterize the policy. 
 
-Given a vector of parameters $$ \vec{\theta} $$ on policy, you have a policy $$ \pi(a \vert s,\vec{\theta}) $$ which give you the probability of certain action $$ a $$ under state $$ s $$. Then you sample an action from that distribution, take this action, observe the next state and reward. After you run the same policy for a period, you evaluate your current policy with data collected and figure out which actions are responsible for better reward. Then you increase the probability of 'good' policy and decrease the 'bad' policy.
+Given a vector of parameters $$ \vec{\theta} $$ on policy, you have a policy $$ \pi(a \vert s,\vec{\theta}) $$ which gives you the probability of certain action $$ a $$ under state $$ s $$. Then you sample an action from that distribution, take this action, observe the next state and reward. After you run the same policy for a period, you evaluate your current policy with data collected and figure out which actions are responsible for better reward. Then you increase the probability of 'good' policy and decrease the 'bad' policy.
 
 ### Parameterize the Probability of Actions under Given states
 
 Obviously, the input to the policy $$ \pi(a \vert s,\vec{\theta}) $$ is the state we are currently in. Instead of using a policy that gives us a deterministic action, here we make the policy output a distribution on action. The reason is that by making the policy random we are actually exploring the world. Just like in Q-learning we use epsilon-greedy algorithm.
 
-If the action space is discrete, where you have a fixed number of actions, the output of the $$ \pi(a \vert s,\vec{\theta}) $$ can be log probability of different action, like the output of neural network in classification problem. If the action space is continuous space, one way is to assume you action follows the normal distribution, where the mean of the normal distribution is calculted by your function. The variance of the normal distribution can be fixed or parameterized, too.
+If the action space is discrete, where you have a fixed number of actions, the output of the $$ \pi(a \vert s,\vec{\theta}) $$ can be log probability of different action, like the output of neural network in classification problem. If the action space is continuous space, one way is to assume your action follows the normal distribution, where the mean of the normal distribution is calculted by your function. The variance of the normal distribution can be fixed or parameterized, too.
 
 So, if you use a linear function to parameterize the policy, your code looks like this,
 ```python
@@ -29,7 +24,7 @@ Of course, neural networks are good choices to fit the policy, too.
 
 ### Measure 'Goodness' of Policy
 
-As we hope that the 'good' actions happen more likely and 'bad' actions happen less likely we need to define a baseline for whether the action is good or not. A near optimal baseline is the expectation of discounted return we get just now using previous policy. This is exactly the value of the policy which we used to collect the data. Below is a simple implementation to calculate the discounted return along a path,
+Since we hope that the 'good' actions happen more likely and 'bad' actions happen less likely we need to define a baseline for whether the action is good or not. A near optimal baseline is the expectation of discounted return we get just now using previous policy. This is exactly the value of the policy which we used to collect the data. Below is a simple implementation to calculate the discounted return along a path,
 ```python
 # discount factor
 gamma = 0.99
@@ -51,9 +46,9 @@ for path in paths:
 	path['return_t'] = return_t
 ```
 
-Because we can only experience finite number of states or small number of states if the state space is very large, we can estimate the baseline by fit another linear function or neural networks.
+Because we can only experience finite number of states or small number of states if the state space is very large, we can estimate the baseline by fitting another linear function or neural networks.
 
-Next, we can use the baseline to evaluate our current policy. First, run the current policy in the environment to collect data. Then calculate the discounted return for this path, and use baseline function to predict the value of each state in this path. Use the actual discount return to to subtract the predicted return and we know how good an action is compared to our old policy. The values we get is called advantage values. Code is
+Next, we can use the baseline to evaluate our current policy. First, run the current policy in the environment to collect data. Then calculate the discounted return for this path, and use baseline function to predict the value of each state in this path. Use the actual discount return to subtract the predicted return and we know how good an action is compared to our old policy. The values we get is called advantage values. Code is
 ```python
 import numpy as np
 # for every path
@@ -93,7 +88,7 @@ Now you have everything you need for updating your policy. In all, the step to r
 
 ### Advanced Policy Update - Constrain Policy Update with KL Divergence
 
-Because we use the value function trained on the old policy to predict the value of the new policy, we are introducing some bias, to ensure that our policy does not change too much. We can constrain the step size of policy update. When we find we made a big change to the policy, the decrease the step size. If the change is small, we increase the step size. A measurement of this change is KL divergence between our old policy and our updated policy. The formula to compute the KL divergence between two probability distribution is
+Because we use the value function trained on the old policy to predict the value of the new policy, we are introducing some bias, to ensure that our policy does not change too much. We can constrain the step size of policy update. When we find we made a big change to the policy, we decrease the step size. If the change is small, we increase the step size. A measurement of this change is KL divergence between our old policy and our updated policy. The formula to compute the KL divergence between two probability distribution is
 
 $$ KL(p_1(x), p_2(x)) = \int{p_1(x)\log p_1(x)} - \int{p_1(x)\log p_2(x)}$$
 
@@ -124,7 +119,7 @@ else:
 
 ### Derivation of Loss 
 
-If you are intereted in how we work out the loss function, Let's do it now! Suppose you have a path $$\tau$$, the probability of which occurs under a certain policy is $$ \pi({\tau \vert \theta}) $$, the discounted return for this path is $$ R(\tau) $$. The expected return of this policy is $$ E_{\tau \sim \pi(\theta)}[R(\tau)]) $$. Now, we want to improve this policy, e.g. improve the expectation. Let take the gradient of the expectation, respect to $$ \theta $$, 
+If you are interested in how we work out the loss function, Let's do it now! Supposing you have a path $$\tau$$, the probability that it occurs under a certain policy is $$ \pi({\tau \vert \theta}) $$, the discounted return for this path is $$ R(\tau) $$. The expected return of this policy is $$ E_{\tau \sim \pi(\theta)}[R(\tau)]) $$. Now, we want to improve this policy, e.g. improve the expectation. Let take the gradient of the expectation, respect to $$ \theta $$, 
 
 $$
 \begin{aligned}
@@ -142,7 +137,13 @@ $$
 \bigtriangledown _\theta \log (\pi (\tau, \theta)) = \frac {1}{\pi (\tau, \theta)} \bigtriangledown _\theta \pi (\tau, \theta)
 $$
 
-This fomula tell us that to adjust our policy, we can adjust the log-probability of the path times something. Subtract it with our baseline function $$B( \tau) $$, we have
+The final formula is
+
+$$
+\bigtriangledown _\theta{E_{\tau \sim \pi(\theta)}[R(\tau)]} = E_{\tau \sim \pi (\theta)}[\bigtriangledown \log( \pi (\tau, \theta))R( \tau)]
+$$
+
+This formula tells us that to adjust our policy, we only need to know the product of the log-probability of the path and the respect return. Subtract it with our baseline function $$B( \tau) $$, we have
 
 $$
 \begin{aligned}
