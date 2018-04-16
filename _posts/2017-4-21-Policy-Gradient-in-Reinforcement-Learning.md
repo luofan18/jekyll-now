@@ -14,7 +14,7 @@ Given a vector of parameters $$ \vec{\theta} $$ on policy, you have a policy $$ 
 
 ### Parameterize the Probability of Actions under Given states
 
-Obviously, the input to the policy $$ \pi(a \vert s,\vec{\theta}) $$ is the state we are currently in. Instead of using a policy that gives us a deterministic action, here we make the policy output a distribution on action. The reason is that by making the policy random we are actually exploring the world. Just like in Q-learning we use epsilon-greedy algorithm.
+Obviously, the input to the policy $$ \pi(a \vert s,\vec{\theta}) $$ is the state we are currently in. Instead of using a policy that gives us a deterministic action, here we make the policy output a distribution on action. The reason is that by making the policy random we are actually exploring the world. Just like in Q-learning we use epsilon-greedy algorithm. Beside, in some cases, the optimal policy is a stochastic policy.  
 
 If the action space is discrete, where you have a fixed number of actions, the output of the $$ \pi(a \vert s,\vec{\theta}) $$ can be log probability of different action, like the output of neural network in classification problem. If the action space is continuous space, one way is to assume your action follows the normal distribution, where the mean of the normal distribution is calculted by your function. The variance of the normal distribution can be fixed or parameterized, too.
 
