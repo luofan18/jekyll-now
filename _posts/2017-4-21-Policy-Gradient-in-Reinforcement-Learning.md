@@ -89,7 +89,7 @@ Now you have everything you need for updating your policy. In all, the step to r
  3. Use your value function and discounted return to calculate the advantage value
  4. Calculate loss and update your policy
  5. Fit your value function to new paths
- 6. Repeat 2-5 until your policy is good enough
+ 6. Repeat step 2-5 until your policy is good enough
 
 ### Advanced Policy Update - Constrain Policy Update with KL Divergence
 
