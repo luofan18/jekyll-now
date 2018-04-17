@@ -99,7 +99,7 @@ $$ KL(p_1(x), p_2(x)) = \int{p_1(x)\log p_1(x)} - \int{p_1(x)\log p_2(x)}$$
 
 For discrete action, the KL divergence is calculated as
 ```python
-kl = a_prob_old * (a_logprob_old / a_logprob)
+kl = a_prob_old * (a_logprob_old - a_logprob)
 # take the mean of KL of all action
 Kl = kl.mean()
 ```
